@@ -16,16 +16,30 @@ from nltk.stem import WordNetLemmatizer
 
 app = Flask(__name__)
 
-CORS(app)
+CORS(
+    app,
+    resources={
+        r"/*":{
+            "origins":"*"
+        }
+    }
+)
 
 
 # ===============================
 # NLTK Resources
 # ===============================
 
-nltk.download("stopwords")
-nltk.download("wordnet")
-nltk.download("omw-1.4")
+try:
+    stop_words = set(stopwords.words("english"))
+
+except LookupError:
+
+    nltk.download("stopwords")
+    nltk.download("wordnet")
+    nltk.download("omw-1.4")
+
+    stop_words = set(stopwords.words("english"))
 
 
 # ===============================
@@ -222,8 +236,9 @@ def predict():
 
 if __name__ == "__main__":
 
+    port = int(os.environ.get("PORT",5001))
+
     app.run(
         host="0.0.0.0",
-        port=5001,
-        debug=True
+        port=port
     )
