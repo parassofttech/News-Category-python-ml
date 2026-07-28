@@ -30,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
-DATASET_PATH = os.path.join(PROJECT_ROOT, "dataset", "bbc-news.csv")
+DATASET_PATH = os.path.join(BASE_DIR, "dataset", "bbc-news.csv")
 
 MODEL_DIR = os.path.join(BASE_DIR, "saved_models")
 
