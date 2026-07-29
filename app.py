@@ -222,6 +222,7 @@ def predict():
 
     traceback.print_exc()
 
+
     return jsonify({
         "success": False,
         "error": traceback.format_exc()
