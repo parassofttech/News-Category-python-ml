@@ -217,16 +217,15 @@ def predict():
 
 
 
-    except Exception as e:
+   except Exception:
+    import traceback
 
+    traceback.print_exc()
 
-        return jsonify({
-
-            "success":False,
-
-            "error":str(e)
-
-        }),500
+    return jsonify({
+        "success": False,
+        "error": traceback.format_exc()
+    }), 500
 
 
 
